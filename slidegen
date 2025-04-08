@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Ensuring proper rendering and touch zooming -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="SlideGen - AI-powered service to transform your ideas into professional PowerPoint presentations effortlessly.">
+  <meta name="keywords" content="SlideGen, AI, PowerPoint, Presentation, Slides">
+  <meta name="author" content="SlideGen Team">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  
+  <title>SlideGen - AI to PowerPoint Service</title>
+  
+  <!-- Preconnect for improved font loading performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- Embedded Styles (consider moving these to an external CSS file for larger projects) -->
+  <style>
+    /* Color Variables */
+    :root {
+      --primary: #4f46e5;
+      --primary-light: #6366f1;
+      --primary-dark: #4338ca;
+      --secondary: #10b981;
+      --light: #f9fafb;
+      --dark: #1f2937;
+      --gray: #6b7280;
+      --light-gray: #e5e7eb;
+    }
+
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Header & Navigation */
+    header, footer {
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+    }
+    .logo svg {
+      margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      color: var(--dark);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    
+    /* Button Styles */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.375rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+      border: 1px solid var(--primary);
+    }
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      border-color: var(--primary-dark);
+    }
+    .btn-outline {
+      background-color: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      padding: 6rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4rem;
+    }
+    .hero-text {
+      flex: 1;
+      min-width: 280px;
+    }
+    .hero-text h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      background: linear-gradient(to right, var(--primary), var(--primary-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-text p {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      color: var(--gray);
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .hero-image {
+      flex: 1;
+      min-width: 280px;
+      position: relative;
+    }
+    .hero-image img {
+      border-radius: 8px;
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+      width: 100%;
+      height: auto;
+    }
+    .hero-patterns {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .pattern-1 {
+      position: absolute;
+      top: 10%;
+      right: 5%;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: linear-gradient(to right, rgba(99,102,241,0.1), rgba(99,102,241,0.05));
+    }
+    .pattern-2 {
+      position: absolute;
+      bottom: 10%;
+      left: 5%;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(to right, rgba(16,185,129,0.1), rgba(16,185,129,0.05));
+    }
+    
+    /* Section Styling */
+    section {
+      padding: 6rem 0;
+    }
+    .section-white {
+      background-color: white;
+    }
+    .section-light {
+      background-color: var(--light);
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 1rem;
+    }
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    
+    /* Features Grid */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .feature-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+    }
+    .feature-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background: var(--primary);
+      border-radius: 50%;
+      margin-bottom: 1.5rem;
+    }
+    .feature-icon svg {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header & Navigation -->
+  <header>
+    <div class="container">
+      <nav aria-label="Main Navigation">
+        <a href="#" class="logo">
+          <!-- Example SVG Logo -->
+          <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" fill="var(--primary)" />
+          </svg>
+          SlideGen
+        </a>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="btn btn-primary" href="#get-started">Get Started</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section section-light" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1 id="hero-heading">Transform Your Ideas into Stunning Presentations</h1>
+            <p class="lead">Harness the power of AI to design professional slides in minutes.</p>
+            <div class="cta-buttons">
+              <a href="#get-started" class="btn btn-primary">Get Started</a>
+              <a href="#learn-more" class="btn btn-outline">Learn More</a>
+            </div>
+          </div>
+          <div class="hero-image">
+            <img src="https://via.placeholder.com/600x400" alt="Screenshot of SlideGen application interface">
+            <div class="hero-patterns">
+              <div class="pattern-1"></div>
+              <div class="pattern-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section-white" aria-labelledby="features-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="features-heading">Features</h2>
+        </header>
+        <div class="features">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <!-- Placeholder Icon -->
+              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M12 2a10 10 0 100 20 10 10 0 000-20z"/>
+              </svg>
+            </div>
+            <h3>AI-Powered Design</h3>
+            <p>Automatically generate slides with a professional look using advanced AI.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M12 2a10 10 0 100 20 10 10 0 000-20z"/>
+              </svg>
+            </div>
+            <h3>Easy Customization</h3>
+            <p>Modify layouts, styles, and color schemes quickly with our intuitive interface.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M12 2a10 10 0 100 20 10 10 0 000-20z"/>
+              </svg>
+            </div>
+            <h3>Seamless Integration</h3>
+            <p>Easily import and export data between multiple platforms and file types.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Additional sections such as "How It Works", "App Demo", "Pricing", etc., can follow the same structural and stylistic guidelines -->
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container" style="padding: 2rem 0; text-align: center;">
+      <p>&copy; 2025 SlideGen. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
